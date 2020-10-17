@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <form method="POST" class="form-horizontal" enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        choice1: <input list="choice1" name="choice1" style="width:250px;" required><br>
+        <datalist id="choice1">
+            {%for choice in choices %}
+            <option value={{ choice.name }}>{{ choice.name }}</option>
+            {%endfor%}
+        </datalist>
+
+        choice2: <input list="choice2" name="choice2" style="width:250px;" required><br>
+        <datalist id="choice2">
+            {%for choice in choices %}
+            <option value={{ choice.name }}>{{ choice.name }}</option>
+            {%endfor%}
+        </datalist>
+
+        choice3: <input list="choice3" name="choice3" style="width:250px;" required><br>
+        <datalist id="choice3">
+            {%for choice in choices %}
+            <option value={{ choice.name }}>{{ choice.name }}</option>
+            {%endfor%}
+        </datalist>
+
+        choice4: <input list="choice4" name="choice4" style="width:250px;" required><br>
+        <datalist id="choice4">
+            {%for choice in choices %}
+            <option value={{ choice.name }}>{{ choice.name }}</option>
+            {%endfor%}
+        </datalist>
+
+    choice5 as answer: <input list="answer" name="answer" style="width:250px;" required><br>
+        <datalist id="answer">
+            {%for choice in choices %}
+            <option value={{ choice.name }}>{{ choice.name }}</option>
+            {%endfor%}
+        </datalist>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+{% endblock %}

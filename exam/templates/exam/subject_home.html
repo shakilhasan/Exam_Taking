@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% for subject in subject %}
+
+<div class="card" >
+  <div class="card bg-Dark text-white">
+  <div class="card-body">
+    <a  class="card-title" href="{% url 'subject_detail' subject.id %}" ><h4 class="card-title">{{ subject.name }}</h4></a>
+  </div>
+</div>
+</div>
+{% endfor %}
+
+{% endblock %}

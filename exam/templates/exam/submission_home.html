@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row text-center">
+{% for submission in submissions %}
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <p class="card-text">{{ submission.user.username }}</p>
+        <a  class="card-title" href="#" ><h4 class="card-title">{{ submission.question.name }}</h4></a>
+        {% if  submission.answer.result %}
+        <p class="card-text" style="color:green;" >{{ submission.answer.name }}</p>
+        {% else %}
+        <p class="card-text" style="color:red;" >{{ submission.answer.name }}</p>
+        {% endif %}
+      </div>
+      <div class="card-footer">
+            <a class="btn btn-danger" href="{% url 'submission_delete' submission.id %}">Delete</a>
+      </div>
+
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

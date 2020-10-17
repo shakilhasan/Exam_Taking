@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- <h1 class="display-3" style="text-align:center;">السلام عليكم ورحمة الله وبركاته </h1><br><br> -->
+<div class="row text-center">
+<!-- ........................................ -->
+{% if user.is_superuser %}
+{% for question in question %}
+<!-- ................................... -->
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-body text-center">
+        <a  class="card-title" href="#" ><h6 class="card-title">{{ question.name }}</h6></a>
+      </div>
+      <div class="card-footer">
+        <form  method="post" action="/submission_add/">
+            {% csrf_token %}
+            <input type="hidden" name="question_id" value="{{ question.id }}">
+            <label for="choice" name="choice">Choose a answer:</label>
+            <select id="choice" name="choice" >
+              {% for choice in choices %}
+              {% if choice.question == question %}
+              <option value={{ choice.id }}>{{ choice.name }}</option>
+              {% endif %}
+              {% endfor %}
+          </select><br>
+            <p class="card-text">select: {{ question.select }}</p>
+            <a class="btn btn-danger" href="{% url 'question_edit' question.id %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'question_delete' question.id %}">Delete</a>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% endif %}
+<!-- ........................................ -->
+{% if user.is_authenticated %}
+{% if not user.is_superuser %}
+{% for question in question %}
+  {% if question.select %}
+
+  <div class="col-lg-3 col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <a  class="card-title" href="#" ><h6 class="card-title">{{ question.name }}</h6></a>
+      </div>
+      <div class="card-footer">
+        <form  method="post" action="/submission_add/">
+            {% csrf_token %}
+            <input type="hidden" name="question_id" value="{{ question.id }}">
+            <label for="choice" name="choice">Choose a answer:</label>
+            <select id="choice" name="choice" >
+              {% for choice in choices %}
+              {% if choice.question == question %}
+              <option value={{ choice.id }}>{{ choice.name }}</option>
+              {% endif %}
+              {% endfor %}
+          </select><br>
+            <input type="submit" name="submit" value="submit" class="btn btn-primary"><br>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+<!-- ........................................ -->
+</div>
+{% endblock %}
