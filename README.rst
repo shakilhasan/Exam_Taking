@@ -19,21 +19,21 @@ Questions
 ^^^^^^^^^^
 Shuffling Questions, as well as shuffling Choices, are ready for Students for an Exam that is selected by Admin. Students get only selected Questions.
 
-Submit Questions:   
-***************** 
+Submit Questions:
+*****************
 Students submit Question's Answer that emailed to Admin.
 
-Add Questions:   
-************** 
+Add Questions:
+**************
 Admin can add new Questions with Choices. 5th No. The choice is count as an Answer. but they become shuffled to the Student.
 
-Edit Questions:   
+Edit Questions:
 ***************
-Admin can edit existing Questions and Choices. 
+Admin can edit existing Questions and Choices.
 
-Delete Questions:   
-***************** 
-Admin can delete existing Questions also. 
+Delete Questions:
+*****************
+Admin can delete existing Questions also.
 
 Subject
 ^^^^^^^^
@@ -45,10 +45,19 @@ Admin access the Submission home that is a collection of all Student's Submissio
 
 Users
 ^^^^^^^
-Superusers is count as Admin/Teacher. And the normal User is counts as Students.
+Superusers are count as Admin/Teacher. And the normal User is counts as Students.
 
 * To create a **superuser account**, use this command::
 
     $ python manage.py createsuperuser
+
+settings:
+***********
+In settings.py replace this with your (`Less secure app access <https://myaccount.google.com/lesssecureapps>`_
+) Gmail and Password: ::
+
+    EMAIL_HOST_USER = 'your@gmail.com'
+    EMAIL_HOST_PASSWORD = 'password'
+
 
  
