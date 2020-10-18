@@ -19,9 +19,9 @@ urlpatterns = [
     path('submission_delete/<int:submission_id>/', views.submission_delete, name='submission_delete'),
 
 
-# # api
-#     path('questionapi/api/v1/posts/',  views.post_collection, name= 'post_collection'),
-#     path('questionapi/api/v1/posts/<int:pk>/', views.post_element, name='post_element'),
-#     path('questionapi/', views.questionapi ,name='questionapi'),
+# api
+    path('question_api/api/v1/questions/',  views.question_collection, name= 'question_collection'),
+    path('question_api/api/v1/questions/<int:pk>/', views.question_element, name='question_element'),
+    path('question_api/', views.question_api ,name='question_api'),
 
  ]

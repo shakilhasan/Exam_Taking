@@ -89,9 +89,9 @@
       <hr class="w-100 clearfix d-md-none">
       <!-- Grid column -->
       <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
-        <p>  <a href="#">Product1</a>  </p>
-        <p>  <a href="#">Product2</a>  </p>
+        <h6 class="text-uppercase mb-4 font-weight-bold">APIs</h6>
+        <p>  <a href="{% url 'question_api' %}">Question_Api</a>  </p>
+        <p>  <a id="api_v1_question" href="#">Api_v1_Question</a>  </p>
       </div>
       <!-- Grid column -->
       <hr class="w-100 clearfix d-md-none">
@@ -162,6 +162,10 @@
 </footer>
 <!-- Footer -->
     <!-- Bootstrap core JavaScript -->
+<script>
+  var x = window.location.href
+  document.getElementById("api_v1_question").href= x+"question_api/api/v1/questions/";
+</script>
     <script>
       var x = window.location.href
       document.getElementById("admin").href= x+"admin";

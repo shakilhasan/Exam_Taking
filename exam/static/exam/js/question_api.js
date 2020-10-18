@@ -1,20 +1,20 @@
 $(function() {
 
   var arr = window.location.href.split("/");
-  var api_url = arr[0] + "//" + arr[2]+'/bookapi/api/v1/posts/'
-    load_posts()
+  var api_url = arr[0] + "//" + arr[2]+'/question_api/api/v1/questions/'
+    load_questions()
 
     // Load all posts on page load
-    function load_posts() {
+    function load_questions() {
         $.ajax({
             url : api_url, // the endpoint
             type : "GET", // http method
             // handle a successful response
             success : function(json) {
                 for (var i = 0; i < json.length; i++) {
-                    dateString = convert_to_readable_date(json[i].created)
+                    // dateString = convert_to_readable_date(json[i].created)
                     $("#talk").prepend("<li id='post-"+json[i].id+"'><strong>"+json[i].name+
-                        "</strong> - <em> "+json[i].author+"</em> - <span> "+dateString+
+                        "</strong> - <em> "+json[i].subject+"</em> - <span> "+
                         "</span> - <a id='delete-post-"+json[i].id+"'>delete me</a></li>");
                 }
             },
@@ -26,7 +26,6 @@ $(function() {
             }
         });
     };
-
 
 
     // convert ugly date to human readable date
@@ -154,7 +153,4 @@ $(function() {
             }
         }
     });
-
-
-
 });
