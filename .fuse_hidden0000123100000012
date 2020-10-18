@@ -64,11 +64,3 @@ APIs
 ^^^^
 * **Api_v1_Question** is a REST API endpoint to get and create questions, create is not work properly.
 * **Question_Api** implement API calls using AJAX.
-
-Unit test cases
-^^^^^^^^^^^^^^^^
-Implement simple Unit test cases.
-
-* Run them using the test command of your project’s manage.py utility ::
-
-     $ ./manage.py test
