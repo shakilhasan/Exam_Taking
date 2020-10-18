@@ -2,16 +2,14 @@
 {% load static %}
 
 {% block content %}
-
     <form method="POST" class="form-horizontal" enctype="multipart/form-data" >
         {% csrf_token %}
         {{ form.as_p }}
-        choice1:<input type="text" name={{ choices.0.id }} value={{ choices.0.name }}></input><br>
-        choice2:<input type="text" name={{ choices.1.id }} value={{ choices.1.name }}></input><br>
-        choice3:<input type="text" name={{ choices.2.id }} value={{ choices.2.name }}></input><br>
-        choice4:<input type="text" name={{ choices.3.id }} value={{ choices.3.name }}></input><br>
-        answer as choice5:<input type="text" name={{ choices.4.id }} value={{ choices.4.name }}></input><br>
+        choice1:<input   type="text" name={{ choices.0.id }} value={{ choices.0.name }}><br>
+        choice2:<input type="text" name={{ choices.1.id }} value={{ choices.1.name }}><br>
+        choice3:<input type="text" name={{ choices.2.id }} value={{ choices.2.name }}><br>
+        choice4:<input type="text" name={{ choices.3.id }} value={{ choices.3.name }}><br>
+        answer as choice5:<input type="text" name={{ choices.4.id }} value={{ choices.4.name }}>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
-
 {% endblock %}

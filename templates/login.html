@@ -2,10 +2,33 @@
 {% load static %}
 {% block content %}
   <h1>Log In</h1>
-  <form class='form' id="login_form" method="post" action="/login/" >
+  <form ng-app="myApp" ng-controller="myCtrl" name="myForm"  class='form' id="login_form" method="post" action="/login/" >
             {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />       <br/>
-            Password: <input type="password" name="password" value="" size="50" />   <br/>
-            <input type="submit" value="submit" />
+            Username: <input ng-model="username" type="text" name="username" value="" size="50" />
+            <span ng-show="incomplete1"> *incomplete</span><br>
+            Password: <input ng-model="password" type="password" name="password" value="" size="50" />
+            <span ng-show="incomplete2"> *incomplete</span><br>
+            <input ng-disabled="incomplete" type="submit" value="submit" />
   </form>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+      var app = angular.module('myApp', []);
+      app.controller('myCtrl', function($scope) {
+        $scope.$watch('username',function() {$scope.test();});
+        $scope.$watch('password',function() {$scope.test();});
+        $scope.test = function() {
+          $scope.incomplete = false;
+          $scope.incomplete1 = false;
+          $scope.incomplete2 = false;
+          if (!$scope.username.length ) {
+             $scope.incomplete = true;
+             $scope.incomplete1 = true;
+            }
+          if (!$scope.password.length) {
+             $scope.incomplete = true;
+             $scope.incomplete2 = true;
+            }
+        };
+      });
+  </script>
 {% endblock content %}
