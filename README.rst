@@ -40,6 +40,10 @@ Subject
 ^^^^^^^^
 Admin can add the Subject, the Question is arranged Subjectwise.
 
+Search
+^^^^^^^^
+Admin/Student can Search for specific Questions. The search result also shuffled.
+
 Submission
 ^^^^^^^^^^^
 Admin access the Submission home that is a collection of all Student's Submission with the varified correct Answer. Admin can delete the Submission.
@@ -69,6 +73,19 @@ Unit test cases
 ^^^^^^^^^^^^^^^^
 Implement simple Unit test cases.
 
-* Run them using the test command of your project’s manage.py utility ::
+* Run them using the test command of your project’s manage.py utility::
 
      $ ./manage.py test
+
+Deployment
+^^^^^^^^^^^^^^^^
+The application is deployed on the **Heroku server**.
+
+* superuser username and password for checking::
+
+      username: admin
+      password: admin
+
+* `Live Link <https://examtaking.herokuapp.com/>`_::
+
+      https://examtaking.herokuapp.com/

@@ -82,16 +82,22 @@
       <!-- Grid column -->
       <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
         <h6 class="text-uppercase mb-4 font-weight-bold">Exam_Taking</h6>
-        <p>This will be our startup company, I and some of my friends discuss business ideas.
-          we start it soon insha'Allah.</p>
+        <p>This is a simple Online Exam Taking Application, using the Python Django framework.</p>
       </div>
       <!-- Grid column -->
       <hr class="w-100 clearfix d-md-none">
       <!-- Grid column -->
       <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        {% if user.is_superuser %}
         <h6 class="text-uppercase mb-4 font-weight-bold">APIs</h6>
         <p>  <a href="{% url 'question_api' %}">Question_Api</a>  </p>
         <p>  <a id="api_v1_question" href="#">Api_v1_Question</a>  </p>
+        {% else %}
+        <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+        <p>  <a href="#">Product1</a>  </p>
+        <p>  <a href="#">Product2</a>  </p>
+        {% endif %}
+
       </div>
       <!-- Grid column -->
       <hr class="w-100 clearfix d-md-none">
@@ -163,8 +169,9 @@
 <!-- Footer -->
     <!-- Bootstrap core JavaScript -->
     <script>
-      var x = window.location.href
-      document.getElementById("api_v1_question").href= x+"question_api/api/v1/questions/";
+    var arr = window.location.href.split("/");
+    var api_url = arr[0] + "//" + arr[2]+'/question_api/api/v1/questions/'
+      document.getElementById("api_v1_question").href= api_url;
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>

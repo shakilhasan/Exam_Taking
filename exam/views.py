@@ -27,11 +27,13 @@ from .serializers import QuestionSerializer
 from .serializers import SubmissionSerializer
 # Create your views here.
 #...........api start.........................
+@login_required(login_url='/login/')
 def question_api(request):
     template = loader.get_template('exam/question_api.html')
     context = {}
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/login/')
 @api_view(['GET', 'POST'])
 def question_collection(request):
     if request.method == 'GET':
@@ -47,7 +49,7 @@ def question_collection(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@login_required(login_url='/login/')
 @api_view(['GET','DELETE'])
 def question_element(request, pk):
     try:
@@ -65,6 +67,7 @@ def question_element(request, pk):
 
 #...........api end.........................
 #...........subject start....................
+@login_required(login_url='/login/')
 def subject_add(request):
     template = loader.get_template('exam/subject_add.html')
     if request.user.is_superuser:
@@ -78,12 +81,14 @@ def subject_add(request):
         context = {'form':form}
         return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/login/')
 def subject_home(request):
     template = loader.get_template('exam/subject_home.html')
     subject = Subject.objects.all()
     context = {'subject':subject}
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/login/')
 def subject_detail(request,subject_id):
     template = loader.get_template('exam/question_home.html')
     subject = Subject.objects.get(id=subject_id)
@@ -97,6 +102,7 @@ def subject_detail(request,subject_id):
 #...........subject end....................
 
 #...........question start....................
+@login_required(login_url='/login/')
 def question_add(request):
     template = loader.get_template('exam/question_add.html')
     if request.user.is_superuser:
@@ -125,6 +131,7 @@ def question_add(request):
         context = {'form':form, 'choices':choices}
         return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/login/')
 def question_home(request):
     template = loader.get_template('exam/question_home.html')
     if request.method == 'POST':
@@ -135,6 +142,7 @@ def question_home(request):
     context = { 'question' : question , 'choices':choices }
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/login/')
 def question_edit(request,question_id):
     template = loader.get_template('exam/question_edit.html')
     if request.user.is_superuser:
@@ -154,6 +162,7 @@ def question_edit(request,question_id):
         context = {'form':form, 'choices':choices}
         return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/login/')
 def question_delete(request,question_id):
     if request.user.is_superuser:
         questions = Question.objects.get(id=question_id)
@@ -161,7 +170,7 @@ def question_delete(request,question_id):
         return redirect('question_home')
 #...........question end....................
 #...........submission start....................
-# @login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def submission_add(request):
     if request.user.is_authenticated:
         name= request.user.username
@@ -188,12 +197,14 @@ def submission_add(request):
     form.save()
     return redirect('question_home')
 
+@login_required(login_url='/login/')
 def submission_home(request):
     template = loader.get_template('exam/submission_home.html')
     submissions = Submission.objects.all();
     context = { 'submissions' : submissions }
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/login/')
 def submission_delete(request,submission_id):
     if request.user.is_superuser:
         submission = Submission.objects.get(id=submission_id)
