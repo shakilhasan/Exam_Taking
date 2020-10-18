@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'exam',
+    'rest_framework',    
 ]
 
 MIDDLEWARE = [
@@ -83,7 +84,7 @@ DATABASES = {
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'shakilhasan105268@gmail.com' #or your gmail 
+EMAIL_HOST_USER = 'shakilhasan105268@gmail.com' #or your gmail
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD") #or your gmail password
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

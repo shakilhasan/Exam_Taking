@@ -1,16 +1,16 @@
 from rest_framework import serializers
-from book_info.models import Book_info
-from book_info.models import Catagory
+from exam.models import Question
+from exam.models import Submission
 
 
-class PostSerializer(serializers.ModelSerializer):
+class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Book_info
+        model = Question
         fields = '__all__'
-        # fields = ['pk','name','author','description','price','available','catagory']
+        # fields = ['pk','name','author','description',]
 
-class CatagorySerializer(serializers.ModelSerializer):
+class SubmissionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Catagory
+        model = Submission
         fields = '__all__'
         # fields = ['name']

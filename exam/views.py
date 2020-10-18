@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
 from django.core.mail import send_mail
+
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -22,9 +23,47 @@ from .forms import SubjectForm
 from .forms import ChoiceForm
 from .forms import QuestionForm
 from .forms import SubmissionForm
-# from .serializers import PostSerializer
-# from .serializers import subjectSerializer
+from .serializers import QuestionSerializer
+from .serializers import SubmissionSerializer
 # Create your views here.
+#...........api start.........................
+def question_api(request):
+    template = loader.get_template('exam/question_api.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+@api_view(['GET', 'POST'])
+def question_collection(request):
+    if request.method == 'GET':
+        questions = Question.objects.all()
+        serializer = QuestionSerializer(questions, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        #data = JSONParser().parse(request)
+        data = {'name': request.data.get('the_post')}
+        serializer = QuestionSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET','DELETE'])
+def question_element(request, pk):
+    try:
+        question = Question.objects.get(pk=pk)
+    except Question.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = QuestionSerializer(question)
+        return Response(serializer.data)
+
+    elif request.method == 'DELETE':
+        question.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+#...........api end.........................
 #...........subject start....................
 def subject_add(request):
     template = loader.get_template('exam/subject_add.html')

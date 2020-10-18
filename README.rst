@@ -3,7 +3,7 @@ Exam_Taking
 ============
 This is a simple Online Exam Taking Application. I am doing this project using the Python Django framework
 
-Features:
+Features
 ---------
 * The exam paper will have multiple-choice Questions.
 * Admins can create Questions with Choices.
@@ -59,5 +59,7 @@ In settings.py replace this with your (`Less secure app access <https://myaccoun
     EMAIL_HOST_USER = 'your@gmail.com'
     EMAIL_HOST_PASSWORD = 'password'
 
-
- 
+APIs
+^^^^
+* **Api_v1_Question** is a REST API endpoint to get and create questions, create is not work properly.
+* **Question_Api** implement API calls using AJAX.
